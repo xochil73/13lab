@@ -38,6 +38,12 @@ users.statics.createFromOauth = function(email) {
         });
 
 };
+//going to authenticate the token
+users.statics.authenticateToken = function(token) {
+    let parsedToken = jwt.verify(token, process.env.SECRET);
+    let query = {_id: parsedToken.id};
+    return this.findOne(query);
+};
 
 users.statics.authenticateBasic = function(auth) {
     let query = {username:auth.username};
@@ -58,7 +64,17 @@ users.methods.generateToken = function() {
         role: this.role,
     };
 
-    return jwt.sign(token, process.env.SECRET);
+    return jwt.sign(token, process.env.SECRET, {expiresIn:'15min'});
+};
+//adding logic to generate an Auth Key
+users.methods.generateKey = function() {
+
+    let key = {
+        id: this._id,
+        role: this.role,
+    };
+
+    return jwt.sign(key, process.env.SECRET);
 };
 
 module.exports = mongoose.model('users', users);
