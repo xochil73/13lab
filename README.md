@@ -7,7 +7,7 @@
 ### Author: Xochil Squaglia
 
 ### Links and Resources
-* [repo](https://github.com/xochil73/11lab)
+* [repo](https://github.com/xochil73/13lab/blob/master/README.md)
 * [travis]()
 * [Heroku](https://dashboard.heroku.com/apps/lab11authentication)
 
